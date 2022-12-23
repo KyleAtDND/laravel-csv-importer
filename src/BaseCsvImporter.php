@@ -603,7 +603,7 @@ abstract class BaseCsvImporter
             return false;
         }
 
-        foreach ($this->csvReader->setOffset(1)->fetchAssoc($this->headers) as $item) {
+        foreach ($this->csvReader->getRecords() as $item) {
             $callable($this->castFields($this->checkEncoding($item)));
         }
 
@@ -629,7 +629,7 @@ abstract class BaseCsvImporter
             }
         });
 
-        return $distinct->keys();
+        return count( $distinct->keys() );
     }
 
     /**
@@ -641,14 +641,7 @@ abstract class BaseCsvImporter
             return false;
         }
 
-        $quantity = $this->csvReader->each(function () {
-            return true;
-        });
-
-        /*
-         * -- to exclude headers line
-         */
-        return --$quantity;
+        return count( $this->csv_reader );
     }
 
     /*
@@ -892,15 +885,15 @@ abstract class BaseCsvImporter
     protected function setReader()
     {
         $this->csvReader = Reader::createFromPath($this->csvFile)
+            ->setHeaderOffset(0)
             ->setDelimiter($this->delimiter)
             ->setEnclosure($this->enclosure)
-            ->setEscape($this->escape)
-            ->setNewline($this->newline);
+            ->setEscape($this->escape);
 
         $this->headers = array_map(function ($value)
         {
             return strtolower(preg_replace('/[[:^print:]]/', '', $value));
-        }, $this->csvReader->fetchOne());
+        }, $this->csvReader->getHeader());
     }
 
     /**

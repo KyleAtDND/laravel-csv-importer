@@ -17,7 +17,7 @@ Register \RGilyov\CsvImporter\CsvImporterServiceProvider inside `config/app.php`
 
 After installation you may publish default configuration file
 ```
-php artisan vendor:publish --tag=config
+php artisan vendor:publish --tag=csv-importer-config
 ```
 
 Works with laravel 5 and above, hhvm are supported.
