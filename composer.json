@@ -17,7 +17,7 @@
         "predis/predis": "1.0.*"
     },
     "require": {
-        "php": "^8.1",
+        "php": ">=8.0",
         "arvenil/ninja-mutex": "dev-master",
         "league/csv": "^9.8.0",
         "laravel/framework": "^9.0",
@@ -33,9 +33,5 @@
             "RGilyov\\CsvImporter\\Test\\": "tests/"
         }
     },
-    "minimum-stability": "dev",
-    "repository": {
-        "type": "vcs",
-        "url": "/Volumes/Sites/packages/laravel-csv-importer"
-    }
+    "minimum-stability": "dev"
 }
