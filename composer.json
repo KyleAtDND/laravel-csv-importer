@@ -32,5 +32,5 @@
             "RGilyov\\CsvImporter\\Test\\": "tests/"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "beta"
 }
